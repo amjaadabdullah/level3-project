@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: shipment-runner
+  namespace: test
+spec:
+  serviceAccountName: amjaad-docker
+  taskRef:
+    name: shipment
+  params:
+  - name: IMAGE
+    value: "amjaad/ship"
+  resources:
+    inputs:
+    - name: project-level3
+      resourceRef:
+        name: ship-re
