@@ -1,9 +1,8 @@
-
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
-  name: orders-res
-  
+  name: orders-re
+  namespace: test
 spec:
   type: git
   params:

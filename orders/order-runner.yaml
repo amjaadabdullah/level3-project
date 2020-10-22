@@ -1,7 +1,9 @@
+
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
   name: orders-runner
+  namespace: test
 spec:
   serviceAccountName: amjaad-docker
   taskRef:
@@ -11,6 +13,6 @@ spec:
     value: "amjaad/orders"
   resources:
     inputs:
-    - name: level3-project
+    - name: project-level3
       resourceRef:
-        name: orders-res
+        name: orders-re

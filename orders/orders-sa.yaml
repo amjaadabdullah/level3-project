@@ -1,8 +1,7 @@
- 
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: amjaad-docker
-  
+  namespace: test
 secrets:
   - name: amjaad-docker
