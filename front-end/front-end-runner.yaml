@@ -1,0 +1,18 @@
+ 
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: front-end-runner
+  namespace: test
+spec:
+  serviceAccountName: amjaad-docker
+  taskRef:
+    name: front-end
+  params:
+  - name: IMAGE
+    value: "amjaad/front-end"
+  resources:
+    inputs:
+    - name: project-level3
+      resourceRef:
+        name: front-end-re
