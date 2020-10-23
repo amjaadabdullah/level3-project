@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: edge-runner
+  namespace: test
+spec:
+  serviceAccountName: amjaad-docker
+  taskRef:
+    name: edge
+  params:
+  - name: IMAGE
+    value: "amjaad/edge"
+  resources:
+    inputs:
+    - name: project-level3
+      resourceRef:
+        name: project-level3
