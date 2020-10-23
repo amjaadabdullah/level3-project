@@ -1,0 +1,17 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: catalogue-runner
+  namespace: test
+spec:
+  serviceAccountName: amjaad-docker
+  taskRef:
+    name: catalogue
+  params:
+  - name: IMAGE
+    value: "amjaad/catalogue"
+  resources:
+    inputs:
+    - name: catalogue-src
+      resourceRef:
+        name: catalogue-src
