@@ -1,7 +1,8 @@
+ 
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
-  name: payment-res
+  name: payment-re
   namespace: test
 spec:
   type: git
@@ -10,3 +11,4 @@ spec:
       value: main
     - name: url
       value: https://github.com/amjaadabdullah/level3-project
+

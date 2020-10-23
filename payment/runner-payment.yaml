@@ -1,7 +1,8 @@
+
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
-  name: runner
+  name: payment-runner
   namespace: test
 spec:
   serviceAccountName: amjaad-docker
@@ -14,4 +15,5 @@ spec:
     inputs:
     - name: level3-project
       resourceRef:
-        name: payment-res
+        name: payment-re
+
