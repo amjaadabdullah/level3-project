@@ -5,10 +5,10 @@ metadata:
   labels:
     name: user-db
 spec:
+  replicas: 1
   selector:
     matchLabels:
       name: user-db
-  replicas: 1
   template:
     metadata:
       labels:
@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: user-db
-        image: rawan005/user-db
+        image: amjaad/user-db
+
         ports:
         - name: mongo
           containerPort: 27017
