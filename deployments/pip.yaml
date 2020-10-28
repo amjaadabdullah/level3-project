@@ -23,10 +23,6 @@ spec:
     type: string
   - name: IMAGETEST
     type: string
-  - name: CONTEXTTEST
-    type: string
-  - name: DOCKERFILETEST
-    type: string
   tasks:
   - name: build-push
     taskRef:
@@ -69,25 +65,10 @@ spec:
       inputs:
       - name: level3-project
         resource: level3-project
-  - name: build-push-test
-    taskRef:
-      name: build-push
-    params:
-    - name: IMAGE
-      value: "$(params.IMAGETEST)"
-    - name: CONTEXT
-      value: "$(params.CONTEXTTEST)"
-    - name: DOCKERFILE
-      value: "$(params.DOCKERFILETEST)"
-    resources:
-      inputs:
-      - name: level3-project
-        resource: level3-project
   - name: run-test
     taskRef:
       name: run-test
     runAfter:
-      - build-push-test
       - wait-microservices
     params:
     - name: image
