@@ -1,8 +1,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
-  name: project-level3
-  namespace: test
+  name: user-src
 spec:
   type: git
   params:
