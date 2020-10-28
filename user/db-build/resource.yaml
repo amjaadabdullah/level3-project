@@ -1,8 +1,8 @@
+
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
   name: user-db-src
-  namespace: test
 spec:
   type: git
   params:
@@ -10,4 +10,3 @@ spec:
       value: main
     - name: url
       value: https://github.com/amjaadabdullah/level3-project
-
