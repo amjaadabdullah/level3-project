@@ -1,0 +1,10 @@
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+metadata:
+  name: role-socks-shop
+  namespace: test
+rules:
+- apiGroups: ["", "extensions", "apps", "networking.k8s.io"]
+  resources: ["deployments", "deployments.apps", "replicasets", "pods", "services", "ingresses"]
+  verbs: ["*"]
+
