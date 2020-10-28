@@ -1,15 +1,15 @@
-# syntax=docker/dockerfile:experimental
-FROM maven:3-jdk-11 as build
-WORKDIR /orders
+ 
+FROM maven:3-jdk-11
+WORKDIR /tmp
 
-copy . /orders
-
+copy src /tmp/src
+copy pom.xml /tmp/
 
 run mvn clean package
 
 from adoptopenjdk/openjdk11:alpine
 
-COPY --from=build /orders/target/orders.jar /orders.jar
+COPY --from=0 /tmp/target/orders.jar /orders.jar
 
 run chmod a+rx ./orders.jar
 
@@ -19,7 +19,7 @@ ARG BUILD_DATE
 ARG BUILD_VERSION
 ARG COMMIT
 
-LABEL org.label-schema.vendor="amjaad-abdullah" \
+LABEL org.label-schema.vendor="amjaad" \
   org.label-schema.build-date="${BUILD_DATE}" \
   org.label-schema.version="${BUILD_VERSION}" \
   org.label-schema.name="Socks Shop: orders" \
