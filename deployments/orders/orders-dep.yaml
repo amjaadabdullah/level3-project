@@ -1,22 +1,21 @@
- 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: catalogue
+  name: orders
   labels:
-    app: catalogue
+    app: orders
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: catalogue
+      app: orders
   template:
     metadata:
       labels:
-        app: catalogue
+        app: orders
     spec:
       containers:
-      - name: catalogue
-        image: amjaad/catalogue
+      - name: orders
+        image: amjaad/orders
         ports:
         - containerPort: 80 

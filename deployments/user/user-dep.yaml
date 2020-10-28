@@ -28,7 +28,7 @@ spec:
         - containerPort: 80
         env:
         - name: mongo
-          value: user-db:27017
+          value: 10.43.64.226:27017
         livenessProbe:
           httpGet:
             path: /health

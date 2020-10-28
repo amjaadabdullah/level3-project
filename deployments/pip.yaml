@@ -1,0 +1,116 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: build-deploy-run
+spec:
+  resources:
+  - name: level3-project
+    type: git
+  params:
+  - name: IMAGE
+    type: string
+  - name: pathToYamlFile
+    type: string
+  - name: pathToServiceFile
+    type: string
+  - name: namespace
+    type: string
+  - name: CONTEXT
+    type: string
+  - name: DOCKERFILE
+    type: string
+  - name: namespaceProd
+    type: string
+  - name: IMAGETEST
+    type: string
+  - name: CONTEXTTEST
+    type: string
+  - name: DOCKERFILETEST
+    type: string
+  tasks:
+  - name: build-push
+    taskRef:
+      name: build-push
+    params:
+    - name: IMAGE
+      value: "$(params.IMAGE)"
+    - name: CONTEXT
+      value: "$(params.CONTEXT)"
+    - name: DOCKERFILE
+      value: "$(params.DOCKERFILE)"
+    resources:
+      inputs:
+      - name: level3-project
+        resource: level3-project
+  - name: run-image
+    taskRef:
+      name: deploy-using-kubectl
+    runAfter:
+      - build-push
+    params:
+    - name: pathToYamlFile
+      value: "$(params.pathToYamlFile)"
+    - name: pathToServiceFile
+      value: "$(params.pathToServiceFile)"
+    - name: image
+      value: "$(params.IMAGE)"
+    - name: namespace
+      value: "$(params.namespace)"
+    resources:
+      inputs:
+      - name: level3-project
+        resource: level3-project
+  - name: wait-microservices
+    taskRef:
+      name: wait-microservices
+    runAfter:
+      - run-image
+    resources:
+      inputs:
+      - name: level3-project
+        resource: level3-project
+  - name: build-push-test
+    taskRef:
+      name: build-push
+    params:
+    - name: IMAGE
+      value: "$(params.IMAGETEST)"
+    - name: CONTEXT
+      value: "$(params.CONTEXTTEST)"
+    - name: DOCKERFILE
+      value: "$(params.DOCKERFILETEST)"
+    resources:
+      inputs:
+      - name: level3-project
+        resource: level3-project
+  - name: run-test
+    taskRef:
+      name: run-test
+    runAfter:
+      - build-push-test
+      - wait-microservices
+    params:
+    - name: image
+      value: "$(params.IMAGETEST)"
+    resources:
+      inputs:
+      - name: level3-project
+        resource: level3-project
+  - name: deploy-to-prod
+    taskRef:
+      name: deploy-using-kubectl
+    runAfter:
+      - run-test
+    params:
+    - name: pathToYamlFile
+      value: "$(params.pathToYamlFile)"
+    - name: pathToServiceFile
+      value: "$(params.pathToServiceFile)"
+    - name: image
+      value: "$(params.IMAGE)"
+    - name: namespace
+      value: "$(params.namespaceProd)"
+    resources:
+      inputs:
+      - name: level3-project
+        resource: level3-project
