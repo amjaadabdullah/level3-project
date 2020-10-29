@@ -1,0 +1,26 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: front-end-pipelinerun 
+spec:
+  pipelineRef:
+    name: front-end-pipeline
+  resources:
+    - name: project-level3
+      resourceRef:
+        name: front-end-re
+  params:
+    - name: CONTEXT
+      value: "/workspace/project-level3/front-end"
+    - name: DOCKERFILE
+      value: "/workspace/project-level3/front-end/Dockerfile"
+    - name: pathToYamlFile
+      value: "project-level3/deployments/front-end/front-end-deploy.yaml"
+    - name: imageUrl
+      value: "amjaad/front-end"
+    - name: imageTag
+      value: "latest"
+    - name: IMAGE
+      value: "amjaad/front-end"
+      
+  serviceAccountName: amjaad-docker
