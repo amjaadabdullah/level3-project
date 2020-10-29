@@ -15,7 +15,7 @@ spec:
     - name: DOCKERFILE
       value: "/workspace/project-level3/edge-router/Dockerfile"
     - name: pathToYamlFile
-      value: "project-level3/deployments/edge-router/dep.yaml"
+      value: "project-level3/deployments/dep.yaml"
     - name: imageUrl
       value: "amjaad/edge"
     - name: imageTag
