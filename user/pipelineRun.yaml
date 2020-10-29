@@ -1,4 +1,4 @@
-
+ 
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
 metadata:
@@ -18,10 +18,10 @@ spec:
     - name: pathToYamlFile
       value: "project-level3/deployments/user/user-dep.yaml"
     - name: imageUrl
-      value: "amjaad/user-db"
+      value: "amjaad/user"
     - name: imageTag
       value: "latest"
     - name: IMAGE
-      value: "amjaad/user-db"
+      value: "amjaad/user"
       
   serviceAccountName: amjaad-docker
