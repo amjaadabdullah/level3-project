@@ -1,8 +1,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
-  name: queue-m
-  namespace: test
+  name: queue-master-src
 spec:
   type: git
   params:
