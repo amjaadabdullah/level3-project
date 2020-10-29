@@ -1,8 +1,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
-  name: ship-re
-  namespace: test
+  name: shipping-src
 spec:
   type: git
   params:

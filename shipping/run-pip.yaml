@@ -1,0 +1,27 @@
+ 
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: shipping-pipelinerun 
+spec:
+  pipelineRef:
+    name: shipping-pipeline
+  resources:
+    - name: project-level3
+      resourceRef:
+        name: shipping-src
+  params:
+    - name: CONTEXT
+      value: "/workspace/project-level3/shipping"
+    - name: DOCKERFILE
+      value: "/workspace/project-level3/shipping/Dockerfile"
+    - name: pathToYamlFile
+      value: "project-level3/deployments/shippment/shippment-dep.yaml"
+    - name: imageUrl
+      value: "amjaad/ship"
+    - name: imageTag
+      value: "latest"
+    - name: IMAGE
+      value: "amjaad/ship"
+      
+  serviceAccountName: amjaad-docker
