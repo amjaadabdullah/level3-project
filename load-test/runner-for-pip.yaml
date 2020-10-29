@@ -1,0 +1,26 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: load-test-pipelinerun 
+spec:
+  pipelineRef:
+    name: load-test-pipeline
+  resources:
+    - name: project-level3
+      resourceRef:
+        name: load-test-src
+  params:
+    - name: CONTEXT
+      value: "/workspace/project-level3/load-test"
+    - name: DOCKERFILE
+      value: "/workspace/project-level3/load-test/Dockerfile"
+    - name: pathToYamlFile
+      value: "project-level3/deployments/load-test/loadtest-dep.yaml"
+    - name: imageUrl
+      value: "amjaad/load-test"
+    - name: imageTag
+      value: "latest"
+    - name: IMAGE
+      value: "amjaad/load-test"
+      
+  serviceAccountName: amjaad-docker
