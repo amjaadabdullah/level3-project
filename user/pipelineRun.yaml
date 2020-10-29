@@ -18,10 +18,10 @@ spec:
     - name: pathToYamlFile
       value: "project-level3/deployments/user/user-dep.yaml"
     - name: imageUrl
-      value: "amjaad/user"
+      value: "amjaad/user-db"
     - name: imageTag
       value: "latest"
     - name: IMAGE
-      value: "amjaad/user"
+      value: "amjaad/user-db"
       
   serviceAccountName: amjaad-docker

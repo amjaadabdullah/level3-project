@@ -8,3 +8,4 @@ type: kubernetes.io/basic-auth
 stringData:
   username: amjaad
   password: af875ae0-1ebc-47dc-bc71-5c78a36967d4
+
