@@ -1,0 +1,26 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: edge-router-pipelinerun 
+spec:
+  pipelineRef:
+    name: edge-router-pipeline
+  resources:
+    - name: project-level3
+      resourceRef:
+        name: edge-router-src
+  params:
+    - name: CONTEXT
+      value: "/workspace/project-level3/edge-router"
+    - name: DOCKERFILE
+      value: "/workspace/project-level3/edge-router/Dockerfile"
+    - name: pathToYamlFile
+      value: "project-level3/deployments/edge-router/dep.yaml"
+    - name: imageUrl
+      value: "amjaad/edge"
+    - name: imageTag
+      value: "latest"
+    - name: IMAGE
+      value: "amjaad/edge"
+      
+  serviceAccountName: amjaad-docker

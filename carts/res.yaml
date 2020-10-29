@@ -1,7 +1,7 @@
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
 metadata:
-  name: edge-router-src
+  name: carts-src
 spec:
   type: git
   params:
