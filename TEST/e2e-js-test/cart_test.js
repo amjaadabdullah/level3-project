@@ -2,13 +2,13 @@
   'use strict';
   require("./config");
 
-  casper.test.begin("User interacts with the cart", 1, function(test) {
+  casper.test.begin("User interacts with the cart", 1, function suite(test) {
     // initial load and login
-    casper.start("http://front-end:8080/", function() {
+    casper.start("http://front-end/", function() {
       this.clickLabel("Login");
       this.fill("#login-modal form", {
         "username": "Eve_Berger",
-        "password": "duis"
+        "password": "eve"
       }, true);
       this.click("#login-modal form button.btn.btn-primary");
       this.waitForText("Logged in", function() {
